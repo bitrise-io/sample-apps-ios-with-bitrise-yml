@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>IDESourceControlProjectFavoriteDictionaryKey</key>
+	<false/>
+	<key>IDESourceControlProjectIdentifier</key>
+	<string>711185D4-904A-4E08-BE9C-82C0648CDBE9</string>
+	<key>IDESourceControlProjectName</key>
+	<string>BitriseSampleWithYML</string>
+	<key>IDESourceControlProjectOriginsDictionary</key>
+	<dict>
+		<key>C6B885FDAE9F8367EDB5F39F5119CF0014C4D878</key>
+		<string>github.com:bitrise-io/sample-apps-ios-with-bitrise-yml.git</string>
+	</dict>
+	<key>IDESourceControlProjectPath</key>
+	<string>BitriseSampleWithYML.xcodeproj</string>
+	<key>IDESourceControlProjectRelativeInstallPathDictionary</key>
+	<dict>
+		<key>C6B885FDAE9F8367EDB5F39F5119CF0014C4D878</key>
+		<string>../..</string>
+	</dict>
+	<key>IDESourceControlProjectURL</key>
+	<string>github.com:bitrise-io/sample-apps-ios-with-bitrise-yml.git</string>
+	<key>IDESourceControlProjectVersion</key>
+	<integer>111</integer>
+	<key>IDESourceControlProjectWCCIdentifier</key>
+	<string>C6B885FDAE9F8367EDB5F39F5119CF0014C4D878</string>
+	<key>IDESourceControlProjectWCConfigurations</key>
+	<array>
+		<dict>
+			<key>IDESourceControlRepositoryExtensionIdentifierKey</key>
+			<string>public.vcs.git</string>
+			<key>IDESourceControlWCCIdentifierKey</key>
+			<string>C6B885FDAE9F8367EDB5F39F5119CF0014C4D878</string>
+			<key>IDESourceControlWCCName</key>
+			<string>sample-apps-ios-with-bitrise-yml</string>
+		</dict>
+	</array>
+</dict>
+</plist>
