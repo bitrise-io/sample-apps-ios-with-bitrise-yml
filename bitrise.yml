@@ -1,0 +1,42 @@
+format_version: 0.9.6
+default_step_lib_source: https://bitbucket.org/bitrise-team/bitrise-new-steps-spec
+app:
+  envs:
+  - PROJECT_TITLE: BitriseSampleWithYML
+    opts:
+      is_expand: no
+  - XCODE_PROJECT_PATH: ./${PROJECT_TITLE}.xcodeproj
+    opts:
+      is_expand: yes
+  - XCODE_PROJECT_SCHEME: ${PROJECT_TITLE}
+    opts:
+      is_expand: yes
+workflows:
+  test:
+    steps:
+    - https://bitbucket.org/bitrise-team/bitrise-new-steps-spec::new-xcode-test@0.9.1:
+        inputs:
+        - project_path: ${XCODE_PROJECT_PATH}
+          opts:
+            is_expand: yes
+        - scheme: ${XCODE_PROJECT_SCHEME}
+          opts:
+            is_expand: yes
+        - simulator_device: iPhone 6
+        - simulator_os_version: latest
+  analyze:
+    steps:
+    - script:
+        inputs:
+        - content: |
+            #!/bin/bash
+            set -v
+            set -e
+            xcodebuild -project "${XCODE_PROJECT_PATH}" -scheme "${XCODE_PROJECT_SCHEME}" analyze
+  archive:
+    steps:
+    - new-xcode-archive:
+        title: Step Test
+        inputs:
+        - project_path: ${XCODE_PROJECT_PATH}
+        - scheme: ${XCODE_PROJECT_SCHEME}
