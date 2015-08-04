@@ -12,6 +12,18 @@ app:
     opts:
       is_expand: yes
 workflows:
+
+  download_certs:
+    steps:
+    - git::https://github.com/bitrise-io/steps-certificate-and-profile-installer.git@master:
+        run_if: .IsCI
+        inputs:
+        - certificate_url: $BITRISE_CERTIFICATE_URL
+        - certificate_passphrase: $BITRISE_CERTIFICATE_PASSPHRASE
+          opts:
+            is_expand: yes
+        - provisioning_profile_url: $BITRISE_PROVISION_URL
+
   test:
     steps:
     - script:
@@ -34,7 +46,10 @@ workflows:
             is_expand: yes
         - simulator_device: iPhone 6
         - simulator_os_version: latest
+
   analyze:
+    before_run:
+    - download_certs
     steps:
     - script:
         inputs:
@@ -43,7 +58,11 @@ workflows:
             set -v
             set -e
             xcodebuild -project "${XCODE_PROJECT_PATH}" -scheme "${XCODE_PROJECT_SCHEME}" analyze
+
   archive:
+    before_run:
+    - test
+    - download_certs
     steps:
     - new-xcode-archive:
         title: Step Test
