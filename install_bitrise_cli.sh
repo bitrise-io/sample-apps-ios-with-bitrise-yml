@@ -3,8 +3,10 @@
 set -v
 set -e
 
-curl -L https://github.com/bitrise-io/bitrise-cli/releases/download/0.9.6/bitrise-cli-$(uname -s)-$(uname -m) > /usr/local/bin/bitrise-cli
+BITRISE_VERSION=0.9.7
 
-chmod +x /usr/local/bin/bitrise-cli
+curl -L https://github.com/bitrise-io/bitrise/releases/download/${BITRISE_VERSION}/bitrise-$(uname -s)-$(uname -m) > /usr/local/bin/bitrise
 
-bitrise-cli setup
+chmod +x /usr/local/bin/bitrise
+
+bitrise setup
