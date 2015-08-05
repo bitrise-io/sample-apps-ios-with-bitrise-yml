@@ -26,16 +26,6 @@ workflows:
 
   test:
     steps:
-    - script:
-        inputs:
-        - content: |-
-            #!/bin/bash
-            set -e
-
-            echo
-            echo "--> Environments"
-            echo
-            env
     - https://bitbucket.org/bitrise-team/bitrise-new-steps-spec::new-xcode-test@0.9.1:
         inputs:
         - project_path: ${XCODE_PROJECT_PATH}
@@ -69,3 +59,10 @@ workflows:
         inputs:
         - project_path: ${XCODE_PROJECT_PATH}
         - scheme: ${XCODE_PROJECT_SCHEME}
+
+  master:
+    before_run:
+      - download_certs
+      - test
+      - analyze
+      - archive
