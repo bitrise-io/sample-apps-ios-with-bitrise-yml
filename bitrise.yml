@@ -17,12 +17,6 @@ workflows:
     steps:
     - git::https://github.com/bitrise-io/steps-certificate-and-profile-installer.git@master:
         run_if: .IsCI
-        inputs:
-        - certificate_url: $BITRISE_CERTIFICATE_URL
-        - certificate_passphrase: $BITRISE_CERTIFICATE_PASSPHRASE
-          opts:
-            is_expand: yes
-        - provisioning_profile_url: $BITRISE_PROVISION_URL
 
   test:
     steps:
