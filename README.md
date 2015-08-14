@@ -1,9 +1,10 @@
 # Simple iOS sample app with bitrise.yml
 
-To run this project with `bitrise` just install it: https://github.com/bitrise-io/bitrise/releases
+You can run this project with the `bitrise` CLI, all you have to do
+is installing it on your own Mac as described here: https://github.com/bitrise-io/bitrise/releases
 
-Then to run the `test` workflow (you can find it in the `bitrise.yml` file)
-just call `cd` into this directory and call `bitrise run test`.
+Then, to run the `test` workflow (you can find it in the `bitrise.yml` file)
+just `cd` into this directory in your Terminal and call `bitrise run test`.
 
 You can also `bitrise run analyze` and `bitrise run archive` - check
 the `bitrise.yml` for all the defined workflows.
