@@ -12,6 +12,8 @@ app:
 workflows:
 
   _download_certs:
+    description: |-
+      This is a utility workflow, used by other workflows.
     steps:
     - git::https://github.com/bitrise-io/steps-certificate-and-profile-installer.git@master:
         description: |-
@@ -25,7 +27,8 @@ workflows:
 
   test:
     steps:
-    - new-xcode-test@0.9.1:
+    - new-xcode-test:
+        title: Run Xcode test
         inputs:
         - project_path: ${XCODE_PROJECT_PATH}
           opts:
@@ -41,16 +44,21 @@ workflows:
     - _download_certs
     steps:
     - script:
+        title: Run Xcode analyze
         inputs:
         - content: xcodebuild -project "${XCODE_PROJECT_PATH}" -scheme "${XCODE_PROJECT_SCHEME}" analyze
 
   archive:
+    description: |-
+      This workflow will run Xcode archive on this project,
+      but first it'll run the workflows listed in
+      the `before_run` section.
     before_run:
     - test
     - _download_certs
     steps:
     - new-xcode-archive:
-        title: Step Test
+        title: Run Xcode archive
         inputs:
         - project_path: ${XCODE_PROJECT_PATH}
         - scheme: ${XCODE_PROJECT_SCHEME}
