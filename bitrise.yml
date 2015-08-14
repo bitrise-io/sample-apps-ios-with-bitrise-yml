@@ -1,16 +1,12 @@
-format_version: 0.9.9
+format_version: 0.9.10
 default_step_lib_source: https://github.com/bitrise-io/bitrise-steplib.git
+
 app:
   envs:
   - PROJECT_TITLE: BitriseSampleWithYML
-    opts:
-      is_expand: no
   - XCODE_PROJECT_PATH: ./${PROJECT_TITLE}.xcodeproj
-    opts:
-      is_expand: yes
   - XCODE_PROJECT_SCHEME: ${PROJECT_TITLE}
-    opts:
-      is_expand: yes
+
 workflows:
 
   _download_certs:
@@ -37,11 +33,7 @@ workflows:
     steps:
     - script:
         inputs:
-        - content: |
-            #!/bin/bash
-            set -v
-            set -e
-            xcodebuild -project "${XCODE_PROJECT_PATH}" -scheme "${XCODE_PROJECT_SCHEME}" analyze
+        - content: xcodebuild -project "${XCODE_PROJECT_PATH}" -scheme "${XCODE_PROJECT_SCHEME}" analyze
 
   archive:
     before_run:
