@@ -6,13 +6,22 @@ app:
   - PROJECT_TITLE: BitriseSampleWithYML
   - XCODE_PROJECT_PATH: ./${PROJECT_TITLE}.xcodeproj
   - XCODE_PROJECT_SCHEME: ${PROJECT_TITLE}
+  - BITRISE_KEYCHAIN_PATH: $HOME/Library/Keychains/login.keychain
+  - BITRISE_KEYCHAIN_PASSWORD: vagrant
 
 workflows:
 
   _download_certs:
     steps:
     - git::https://github.com/bitrise-io/steps-certificate-and-profile-installer.git@master:
+        description: |-
+          This step will only be used in CI mode, on continuous integration
+          servers / services (because of the `run_if` statement),
+          but **NOT** when you run it on your own machine.
         run_if: .IsCI
+        inputs:
+        - keychain_path: $BITRISE_KEYCHAIN_PATH
+        - keychain_password: $BITRISE_KEYCHAIN_PASSWORD
 
   test:
     steps:
