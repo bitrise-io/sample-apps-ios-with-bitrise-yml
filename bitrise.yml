@@ -59,3 +59,10 @@ workflows:
         inputs:
         - project_path: ${XCODE_PROJECT_PATH}
         - scheme: ${XCODE_PROJECT_SCHEME}
+
+  master:
+    before_run:
+      - download_certs
+      - test
+      - analyze
+      - archive
