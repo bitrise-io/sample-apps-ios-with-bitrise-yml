@@ -78,7 +78,7 @@ workflows:
             #!/bin/bash
             echo "-> BITRISE_IPA_PATH: ${BITRISE_IPA_PATH}"
     - bitrise-ios-deploy:
-        run_if: not .IsPR | and .IsCI
+        run_if: "not .IsPR | and .IsCI"
         inputs:
         - notify_user_groups: none
         - is_enable_public_page: "yes"
@@ -86,6 +86,7 @@ workflows:
         inputs:
         - webhook_url: "${SLACK_WEBHOOK_URL}"
         - channel: "${SLACK_CHANNEL}"
+        - from_username: ${PROJECT_TITLE}
         - message: |-
             CI check - OK
             PULL_REQUEST_ID : ${PULL_REQUEST_ID}
