@@ -91,7 +91,8 @@ workflows:
         inputs:
         - webhook_url: "${SLACK_WEBHOOK_URL}"
         - channel: "${SLACK_CHANNEL}"
-        - from_username: ${PROJECT_TITLE}
+        - from_username: ${PROJECT_TITLE} - OK
+        - from_username_on_error: ${PROJECT_TITLE} - ERROR
         - message: |-
             CI check - OK
             PULL_REQUEST_ID : ${PULL_REQUEST_ID}
