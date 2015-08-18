@@ -87,7 +87,9 @@ workflows:
         - webhook_url: "${SLACK_WEBHOOK_URL}"
         - channel: "${SLACK_CHANNEL}"
         - message: |-
-            Run on Master - OK
+            CI check - OK
+            PULL_REQUEST_ID : ${PULL_REQUEST_ID}
             BITRISE_PUBLIC_INSTALL_PAGE_URL: ${BITRISE_PUBLIC_INSTALL_PAGE_URL}
         - message_on_error: |-
-            Run on Master - FAILED
+            CI check - FAILED
+            PULL_REQUEST_ID : ${PULL_REQUEST_ID}
