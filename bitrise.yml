@@ -6,6 +6,8 @@ app:
   - PROJECT_TITLE: BitriseSampleWithYML
   - XCODE_PROJECT_PATH: ./${PROJECT_TITLE}.xcodeproj
   - XCODE_PROJECT_SCHEME: ${PROJECT_TITLE}
+  # WORKAROUND
+  - PULL_REQUEST_ID: "${BITRISE_PULL_REQUEST}"
   # in a normal project you should moved these into the
   #  hidden .bitrise.secrets.yml file, so that it's not stored
   #  in your code repository
