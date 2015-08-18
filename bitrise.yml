@@ -78,7 +78,7 @@ workflows:
             #!/bin/bash
             echo "-> BITRISE_IPA_PATH: ${BITRISE_IPA_PATH}"
     - bitrise-ios-deploy:
-        run_if: .IsCI | and (not .IsPR)
+        run_if: not .IsPR | and .IsCI
         inputs:
         - notify_user_groups: none
         - is_enable_public_page: "yes"
