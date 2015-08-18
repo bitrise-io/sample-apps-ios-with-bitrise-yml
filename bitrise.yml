@@ -6,6 +6,9 @@ app:
   - PROJECT_TITLE: BitriseSampleWithYML
   - XCODE_PROJECT_PATH: ./${PROJECT_TITLE}.xcodeproj
   - XCODE_PROJECT_SCHEME: ${PROJECT_TITLE}
+  # in a normal project you should moved these into the
+  #  hidden .bitrise.secrets.yml file, so that it's not stored
+  #  in your code repository
   - BITRISE_KEYCHAIN_PATH: $HOME/Library/Keychains/login.keychain
   - BITRISE_KEYCHAIN_PASSWORD: vagrant
 
@@ -27,17 +30,14 @@ workflows:
 
   test:
     steps:
-    - new-xcode-test:
+    - xcode-test:
         title: Run Xcode test
         inputs:
         - project_path: ${XCODE_PROJECT_PATH}
-          opts:
-            is_expand: yes
         - scheme: ${XCODE_PROJECT_SCHEME}
-          opts:
-            is_expand: yes
         - simulator_device: iPhone 6
         - simulator_os_version: latest
+        - is_clean_build: "no"
 
   analyze:
     before_run:
@@ -57,8 +57,18 @@ workflows:
     - test
     - _download_certs
     steps:
-    - new-xcode-archive:
+    - xcode-archive:
         title: Run Xcode archive
         inputs:
         - project_path: ${XCODE_PROJECT_PATH}
         - scheme: ${XCODE_PROJECT_SCHEME}
+
+  deploy:
+    description: |-
+      This workflow is meant to be used on a CI server (like bitrise.io), for continuous
+      deployment, but of course you can run it on your own Mac as well,
+      except the Step which deploys to Bitrise.io - that's marked with
+      a Run-If statement to be skipped, unless you run bitrise in --ci mode.
+    before_run:
+    - archive
+    steps: []
