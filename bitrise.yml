@@ -71,4 +71,23 @@ workflows:
       a Run-If statement to be skipped, unless you run bitrise in --ci mode.
     before_run:
     - archive
-    steps: []
+    steps:
+    - script:
+        inputs:
+        - content: |-
+            #!/bin/bash
+            echo "-> BITRISE_IPA_PATH: ${BITRISE_IPA_PATH}"
+    - bitrise-ios-deploy:
+        run_if: .IsCI
+        inputs:
+        - notify_user_groups: none
+        - is_enable_public_page: "yes"
+    - slack:
+        inputs:
+        - webhook_url: "${SLACK_WEBHOOK_URL}"
+        - channel: "${SLACK_CHANNEL}"
+        - message: |-
+            Run on Master - OK
+            BITRISE_PUBLIC_INSTALL_PAGE_URL: ${BITRISE_PUBLIC_INSTALL_PAGE_URL}
+        - message_on_error: |-
+            Run on Master - FAILED
