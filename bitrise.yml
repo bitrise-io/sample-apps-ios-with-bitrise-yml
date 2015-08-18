@@ -63,7 +63,7 @@ workflows:
         - project_path: ${XCODE_PROJECT_PATH}
         - scheme: ${XCODE_PROJECT_SCHEME}
 
-  deploy:
+  master:
     description: |-
       This workflow is meant to be used on a CI server (like bitrise.io), for continuous
       deployment, but of course you can run it on your own Mac as well,
